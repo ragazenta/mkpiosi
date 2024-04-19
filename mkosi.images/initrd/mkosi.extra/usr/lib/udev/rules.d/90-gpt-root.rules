@@ -1,0 +1,6 @@
+ACTION=="remove", GOTO="systemd_end"
+
+# add symlink to GPT root disk
+SUBSYSTEM=="block", ENV{ID_PART_ENTRY_SCHEME}=="gpt", ENV{ID_PART_ENTRY_NAME}=="rootfs", SYMLINK+="gpt-auto-root"
+
+LABEL="systemd_end"

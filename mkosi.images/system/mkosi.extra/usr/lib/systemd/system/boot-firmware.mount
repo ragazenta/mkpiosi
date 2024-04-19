@@ -1,0 +1,11 @@
+[Unit]
+Description=Raspberry Pi boot firmware
+ConditionPathExists=/dev/disk/by-label/BOOTFS
+
+[Mount]
+What=/dev/disk/by-label/BOOTFS
+Where=/boot/firmware
+Type=vfat
+
+[Install]
+WantedBy=local-fs.target

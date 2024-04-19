@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+LOCALE="en_US.UTF-8"
+echo "$LOCALE UTF-8" > /etc/locale.gen
+update-locale --no-checks "LANG=$LOCALE"
+dpkg-reconfigure -f noninteractive locales
+
+cp -Lv ${SRCDIR}/mkosi.output/initrd /boot/firmware/initramfs_2712
+cp -Lv ${SRCDIR}/mkosi.output/initrd /boot/firmware/initramfs8
+
+USERNAME="pi"
+PASSWORD="raspberry"
+
+adduser --disabled-password --gecos "Raspberry Pi" $USERNAME
+echo "$USERNAME:$PASSWORD" | chpasswd
+
+for GRP in input spi i2c gpio; do
+	groupadd -f -r $GRP
+done
+for GRP in adm dialout cdrom audio sudo video games plugdev input gpio spi i2c render; do
+	adduser $USERNAME $GRP
+done

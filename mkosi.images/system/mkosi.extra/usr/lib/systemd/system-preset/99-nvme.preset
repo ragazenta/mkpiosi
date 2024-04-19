@@ -1,0 +1,2 @@
+disable nvmefc-boot-connections.service
+disable nvmf-autoconnect.service

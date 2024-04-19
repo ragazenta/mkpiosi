@@ -1,0 +1,6 @@
+Types: deb
+URIs: http://archive.raspberrypi.com/debian
+Suites: bookworm
+Components: main
+Signed-By: /usr/share/keyrings/raspberrypi.gpg
+
